@@ -23,10 +23,10 @@ nonzero supports; later declarations package them as a ring equivalence and
 transport Mathlib's algebraic structures back to the executable type.
 -/
 
-namespace HexMvPolyMathlib
+namespace HexMvPolyTheory
 
 open scoped BigOperators
-open scoped HexMvPolyMathlib
+open scoped HexMvPolyTheory
 
 open Hex
 open Hex.MvPoly
@@ -41,13 +41,13 @@ noncomputable section
 
 /-!
 Executable operations and Mathlib structures must use the same coefficient
-operations. The `HexMvPolyMathlib` scope raises Mathlib's existing
+operations. The `HexMvPolyTheory` scope raises Mathlib's existing
 `CommSemiring`/`CommRing` adapters above native Grind instances while the
 bridge is in use. The scope is active throughout these implementation files,
 but importing the bridge alone does not change global instance search.
 -/
 
-scoped[HexMvPolyMathlib] attribute [instance 2000]
+scoped[HexMvPolyTheory] attribute [instance 2000]
   CommSemiring.toGrindCommSemiring CommRing.toGrindCommRing
 
 /-- A fixed-arity exponent vector is equivalent to a finitely supported
@@ -715,4 +715,4 @@ example (p q : MvPoly n Rat Mono.lex) :
 
 end InstanceCoherence
 
-end HexMvPolyMathlib
+end HexMvPolyTheory

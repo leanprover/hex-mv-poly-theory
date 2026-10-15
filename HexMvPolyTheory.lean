@@ -6,12 +6,12 @@ Authors: Kim Morrison
 
 module
 
-public import HexMvPolyMathlib.Aeval
-public import HexMvPolyMathlib.Correspondence
-public import HexMvPolyMathlib.Equiv
-public import HexMvPolyMathlib.Kernel
-public import HexMvPolyMathlib.KernelResidue
-public import HexMvPolyMathlib.Recursive
+public import HexMvPolyTheory.Aeval
+public import HexMvPolyTheory.Correspondence
+public import HexMvPolyTheory.Equiv
+public import HexMvPolyTheory.Kernel
+public import HexMvPolyTheory.KernelResidue
+public import HexMvPolyTheory.Recursive
 
 public section
 

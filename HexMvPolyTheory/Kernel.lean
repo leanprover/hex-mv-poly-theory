@@ -6,7 +6,7 @@ Authors: Kim Morrison
 
 module
 
-public import HexMvPolyMathlib.Equiv
+public import HexMvPolyTheory.Equiv
 
 public section
 
@@ -19,11 +19,11 @@ arithmetic; the bridge transports its proved denotation through the ring
 equivalence with `MvPolynomial`.
 -/
 
-namespace HexMvPolyMathlib.Kernel
+namespace HexMvPolyTheory.Kernel
 
 open Hex
 open Hex.MvPoly
-open scoped HexMvPolyMathlib
+open scoped HexMvPolyTheory
 
 universe u
 
@@ -35,7 +35,7 @@ abbrev PolyList := Hex.MvPoly.Kernel.PolyList
     [BEq R] [LawfulBEq R] [DecidableEq R]
     {cmp : Mono n → Mono n → Ordering} [Std.TransCmp cmp]
     [Std.LawfulEqCmp cmp] (p : PolyList R) : MvPolynomial (Fin n) R :=
-  HexMvPolyMathlib.equiv (cmp := cmp) (Hex.MvPoly.Kernel.denote (cmp := cmp) p)
+  HexMvPolyTheory.equiv (cmp := cmp) (Hex.MvPoly.Kernel.denote (cmp := cmp) p)
 
 /-- The list multiplicative identity denotes the Mathlib identity. -/
 theorem denote_one {n : Nat} {R : Type u} [CommSemiring R]
@@ -95,7 +95,7 @@ theorem denote_smul {n : Nat} {R : Type u} [CommSemiring R]
       MvPolynomial.C a * denote (cmp := cmp) p := by
   unfold denote
   rw [Hex.MvPoly.Kernel.denote_smul, map_mul,
-    HexMvPolyMathlib.equiv_apply, HexMvPolyMathlib.toMvPolynomial_C]
+    HexMvPolyTheory.equiv_apply, HexMvPolyTheory.toMvPolynomial_C]
 
 /-- Producer conversion reads as the corresponding Mathlib polynomial. -/
 theorem denote_toList {n : Nat} {R : Type u} [CommSemiring R]
@@ -103,7 +103,7 @@ theorem denote_toList {n : Nat} {R : Type u} [CommSemiring R]
     {cmp : Mono n → Mono n → Ordering} [Std.TransCmp cmp]
     [Std.LawfulEqCmp cmp] (p : MvPoly n R cmp) :
     denote (cmp := cmp) (Hex.MvPoly.Kernel.toList p) =
-      HexMvPolyMathlib.equiv (cmp := cmp) p := by
+      HexMvPolyTheory.equiv (cmp := cmp) p := by
   unfold denote
   rw [Hex.MvPoly.Kernel.denote_toList]
 
@@ -121,7 +121,7 @@ theorem isZero_iff {n : Nat} {R : Type u} [CommSemiring R]
     unfold denote
     rw [h, map_zero]
   · intro h
-    apply (HexMvPolyMathlib.equiv (cmp := cmp)).injective
+    apply (HexMvPolyTheory.equiv (cmp := cmp)).injective
     simpa [denote] using h
 
 /-- The list equality test agrees with equality of Mathlib denotations on
@@ -136,6 +136,6 @@ theorem beq_iff {n : Nat} {R : Type u} [CommSemiring R]
       denote (cmp := cmp) p = denote (cmp := cmp) q := by
   rw [Hex.MvPoly.Kernel.beq_iff (cmp := cmp) hp hq]
   unfold denote
-  exact (HexMvPolyMathlib.equiv (n := n) (R := R) (cmp := cmp)).injective.eq_iff.symm
+  exact (HexMvPolyTheory.equiv (n := n) (R := R) (cmp := cmp)).injective.eq_iff.symm
 
-end HexMvPolyMathlib.Kernel
+end HexMvPolyTheory.Kernel

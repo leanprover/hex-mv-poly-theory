@@ -10,8 +10,8 @@ public import Mathlib.Algebra.MvPolynomial.Monad
 public import Mathlib.Algebra.MvPolynomial.PDeriv
 public import Mathlib.RingTheory.MvPolynomial.Homogeneous
 public import HexBasic.Fold
-public import HexMvPolyMathlib.Aeval
-public import HexMvPolyMathlib.Recursive
+public import HexMvPolyTheory.Aeval
+public import HexMvPolyTheory.Recursive
 
 public section
 
@@ -27,10 +27,10 @@ laws: Mathlib's `MvPolynomial` has no corresponding explicit monomial-order
 parameter or polynomial-valued filtering operation.
 -/
 
-namespace HexMvPolyMathlib
+namespace HexMvPolyTheory
 
 open scoped BigOperators
-open scoped HexMvPolyMathlib
+open scoped HexMvPolyTheory
 
 open Hex
 open Hex.MvPoly
@@ -300,4 +300,4 @@ end Recursive
 
 end
 
-end HexMvPolyMathlib
+end HexMvPolyTheory

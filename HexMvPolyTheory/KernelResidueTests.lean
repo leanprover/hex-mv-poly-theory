@@ -6,13 +6,13 @@ Authors: Kim Morrison
 
 module
 
-public import HexMvPolyMathlib.KernelResidue
+public import HexMvPolyTheory.KernelResidue
 
 public section
 
 /-! Consumer-side elaboration and semantic replay over Mathlib residues. -/
 
-namespace HexMvPolyMathlib.KernelResidueTests
+namespace HexMvPolyTheory.KernelResidueTests
 
 open Hex.MvPoly.Kernel
 
@@ -73,4 +73,4 @@ example : Kernel.denoteMod 1 (cmp := Hex.Mono.lex) (n := 2) (oneMod 1 2) = 1 :=
   Kernel.denoteMod_oneMod 1
 end Trivial
 
-end HexMvPolyMathlib.KernelResidueTests
+end HexMvPolyTheory.KernelResidueTests

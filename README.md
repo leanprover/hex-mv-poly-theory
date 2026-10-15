@@ -1,15 +1,15 @@
-# hex-mv-poly-mathlib
+# hex-mv-poly-theory
 
 Part of [`hex`](https://github.com/kim-em/hex-dev), a computer algebra
 library for Lean 4. The aim is fast executable code, fully verified, built
 with spec-driven development.
 
-`hex-mv-poly-mathlib` is the Mathlib bridge for
+`hex-mv-poly-theory` is the theory companion of
 [`hex-mv-poly`](https://github.com/leanprover/hex-mv-poly). It identifies
 the executable sparse representation with `MvPolynomial (Fin n) R` and
 transports the proof-facing algebraic API. It depends on Mathlib,
 [`hex-mv-poly`](https://github.com/leanprover/hex-mv-poly), and
-[`hex-poly-mathlib`](https://github.com/leanprover/hex-poly-mathlib).
+[`hex-poly-theory`](https://github.com/leanprover/hex-poly-theory).
 
 # Quickstart
 
@@ -17,16 +17,16 @@ Add to your `lakefile.toml`:
 
 ```toml
 [[require]]
-name = "hex-mv-poly-mathlib"
-git = "https://github.com/leanprover/hex-mv-poly-mathlib.git"
+name = "hex-mv-poly-theory"
+git = "https://github.com/leanprover/hex-mv-poly-theory.git"
 rev = "main"
 ```
 
 ```lean
-import HexMvPolyMathlib
+import HexMvPolyTheory
 
-open Hex Hex.MvPoly HexMvPolyMathlib
-open scoped HexMvPolyMathlib
+open Hex Hex.MvPoly HexMvPolyTheory
+open scoped HexMvPolyTheory
 
 abbrev P := MvPoly 2 Int Mono.lex
 

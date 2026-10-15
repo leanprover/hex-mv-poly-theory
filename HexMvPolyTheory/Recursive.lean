@@ -7,8 +7,8 @@ Authors: Kim Morrison
 module
 
 public import Mathlib.Algebra.MvPolynomial.Equiv
-public import HexMvPolyMathlib.Equiv
-public import HexPolyMathlib.PolynomialEquivalence
+public import HexMvPolyTheory.Equiv
+public import HexPolyTheory.PolynomialEquivalence
 
 public section
 
@@ -21,9 +21,9 @@ first variable. Its ring laws are proved through a coefficientwise commuting
 square with Mathlib's `MvPolynomial.finSuccEquiv`.
 -/
 
-namespace HexMvPolyMathlib
+namespace HexMvPolyTheory
 
-open scoped HexMvPolyMathlib
+open scoped HexMvPolyTheory
 
 open Hex
 open Hex.MvPoly
@@ -57,7 +57,7 @@ def recursiveMap [CommSemiring R] [DecidableEq R]
     (q : DensePoly (MvPoly n R cmp')) :
     Polynomial (MvPolynomial (Fin n) R) :=
   Polynomial.map (equiv (cmp := cmp')).toRingHom
-    (HexPolyMathlib.toPolynomial q)
+    (HexPolyTheory.toPolynomial q)
 
 /-- The executable recursive view agrees exactly with Mathlib's
 `MvPolynomial.finSuccEquiv`. -/
@@ -210,7 +210,7 @@ univariate polynomial. -/
 def oneVarEquiv [CommSemiring R] [DecidableEq R] :
     MvPoly 1 R cmp1 ≃+* DensePoly R :=
   (finSuccEquiv (cmp := cmp1) (Mono.lex : Mono 0 → Mono 0 → Ordering)).trans
-    (HexPolyMathlib.mapEquiv
+    (HexPolyTheory.mapEquiv
       (isEmptyRingEquiv (R := R)
         (cmp0 := (Mono.lex : Mono 0 → Mono 0 → Ordering))))
 
@@ -219,7 +219,7 @@ coefficient polynomials identified with coefficients. -/
 @[simp] theorem oneVarEquiv_apply
     [CommSemiring R] [DecidableEq R] (p : MvPoly 1 R cmp1) :
     oneVarEquiv p =
-      HexPolyMathlib.mapEquiv
+      HexPolyTheory.mapEquiv
         (isEmptyRingEquiv (R := R)
           (cmp0 := (Mono.lex : Mono 0 → Mono 0 → Ordering)))
         (toUnivariate 0 Mono.lex p) := by
@@ -230,7 +230,7 @@ coefficient polynomials identified with coefficients. -/
     [CommSemiring R] [DecidableEq R] (q : DensePoly R) :
     (oneVarEquiv (cmp1 := cmp1)).symm q =
       ofUnivariate (cmp := cmp1) 0 Mono.lex
-        ((HexPolyMathlib.mapEquiv
+        ((HexPolyTheory.mapEquiv
           (isEmptyRingEquiv (R := R)
             (cmp0 := (Mono.lex : Mono 0 → Mono 0 → Ordering)))).symm q) := by
   rfl
@@ -239,4 +239,4 @@ end OneVariable
 
 end
 
-end HexMvPolyMathlib
+end HexMvPolyTheory

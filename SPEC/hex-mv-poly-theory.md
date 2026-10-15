@@ -1,6 +1,6 @@
-# hex-mv-poly-mathlib (depends on hex-mv-poly + hex-poly-mathlib + hex-mod-arith-mathlib + Mathlib)
+# hex-mv-poly-theory (depends on hex-mv-poly + hex-poly-theory + hex-mod-arith-theory + Mathlib)
 
-The Mathlib bridge for the canonical, Mathlib-free sparse multivariate
+The theory companion for the canonical, Mathlib-free sparse multivariate
 polynomials in `hex-mv-poly`. It identifies
 `Hex.MvPoly n R cmp` with `MvPolynomial (Fin n) R` while preserving the
 executable operations and canonical representation supplied by the core
@@ -48,7 +48,7 @@ propositional equalities rather than quotient-level equivalences.
 
 ## Kernel term-list denotation
 
-`HexMvPolyMathlib.Kernel.denote` composes the Mathlib-free canonical-list
+`HexMvPolyTheory.Kernel.denote` composes the Mathlib-free canonical-list
 denotation with `equiv`:
 
 ```lean
@@ -69,7 +69,7 @@ mapping this denotation after replay.
 For positive-characteristic certificates, `KernelResidue.lean` supplies
 `Kernel.denoteMod p : PolyList Nat → MvPolynomial (Fin n) (ZMod p)`.
 Its `residueEquiv` composes the polynomial equivalence with the coefficient
-ring equivalence `HexModArithMathlib.ZMod64.equiv`. The modular arithmetic,
+ring equivalence `HexModArithTheory.ZMod64.equiv`. The modular arithmetic,
 zero and one, canonical equality tests, and producer round-trip laws
 transport through this
 composition under `Hex.ZMod64.Bounds p`. The natural-residue encoding,
@@ -104,7 +104,7 @@ are development benchmarks rather than part of the released package.
 
 ## External comparators
 
-No external comparator is required. This is a Mathlib bridge: its relevant
+No external comparator is required. This is a theory companion: its relevant
 comparison is the proved within-Lean correspondence with
 `MvPolynomial (Fin n) R`; external systems would instead measure the
 underlying sparse arithmetic owned by `hex-mv-poly`.

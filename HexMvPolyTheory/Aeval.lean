@@ -7,7 +7,7 @@ Authors: Kim Morrison
 module
 
 public import HexBasic.Fold
-public import HexMvPolyMathlib.Equiv
+public import HexMvPolyTheory.Equiv
 
 public section
 
@@ -16,10 +16,10 @@ Algebra-hom evaluation for `Hex.MvPoly` and its exact correspondence with the
 Mathlib-free evaluator.
 -/
 
-namespace HexMvPolyMathlib
+namespace HexMvPolyTheory
 
 open scoped BigOperators
-open scoped HexMvPolyMathlib
+open scoped HexMvPolyTheory
 
 open Hex
 open Hex.MvPoly
@@ -263,4 +263,4 @@ map. -/
     aeval x (p - q) = aeval x p - aeval x q :=
   map_sub (aeval x) p q
 
-end HexMvPolyMathlib
+end HexMvPolyTheory

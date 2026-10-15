@@ -1,5 +1,5 @@
-name = "hex-mv-poly-mathlib"
-defaultTargets = ["HexMvPolyMathlib"]
+name = "hex-mv-poly-theory"
+defaultTargets = ["HexMvPolyTheory"]
 
 leanOptions = [
   { name = "doc.verso", value = true },
@@ -9,22 +9,22 @@ leanOptions = [
 [[require]]
 name = "HexBasic"
 git = "https://github.com/leanprover/hex-basic.git"
-rev = "v0.9.0"
+rev = "v0.10.0"
 
 [[require]]
 name = "HexMvPoly"
 git = "https://github.com/leanprover/hex-mv-poly.git"
-rev = "v0.9.0"
+rev = "v0.10.0"
 
 [[require]]
-name = "HexPolyMathlib"
-git = "https://github.com/leanprover/hex-poly-mathlib.git"
-rev = "v0.9.0"
+name = "HexPolyTheory"
+git = "https://github.com/leanprover/hex-poly-theory.git"
+rev = "v0.10.0"
 
 [[require]]
-name = "HexModArithMathlib"
-git = "https://github.com/leanprover/hex-mod-arith-mathlib.git"
-rev = "v0.9.0"
+name = "HexModArithTheory"
+git = "https://github.com/leanprover/hex-mod-arith-theory.git"
+rev = "v0.10.0"
 
 [[require]]
 name = "mathlib"
@@ -32,8 +32,8 @@ git = "https://github.com/leanprover-community/mathlib4.git"
 rev = "6b7abb3c7686292736be2955bd3eb9ebf63b456a"
 
 [[lean_lib]]
-name = "HexMvPolyMathlib"
+name = "HexMvPolyTheory"
 
 [[lean_lib]]
-name = "HexMvPolyMathlibTests"
-globs = ["HexMvPolyMathlib.KernelResidueTests"]
+name = "HexMvPolyTheoryTests"
+globs = ["HexMvPolyTheory.KernelResidueTests"]

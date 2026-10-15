@@ -6,9 +6,9 @@ Authors: Kim Morrison
 
 module
 
-public import HexMvPolyMathlib.Kernel
+public import HexMvPolyTheory.Kernel
 public import HexMvPoly.KernelResidue.Denote
-public import HexModArithMathlib.Ring
+public import HexModArithTheory.Ring
 public import Mathlib.Algebra.MvPolynomial.Equiv
 
 public section
@@ -16,11 +16,11 @@ public section
 /-! Semantic transport of natural-residue certificates to Mathlib `ZMod`.
 All closed certificate computation remains in the Mathlib-free list layer. -/
 
-namespace HexMvPolyMathlib.Kernel
+namespace HexMvPolyTheory.Kernel
 
 open Hex
 open Hex.MvPoly
-open scoped HexMvPolyMathlib HexModArithMathlib.ZMod64
+open scoped HexMvPolyTheory HexModArithTheory.ZMod64
 
 variable (p : Nat) [Hex.ZMod64.Bounds p]
 variable {n : Nat} {cmp : Mono n → Mono n → Ordering}
@@ -29,8 +29,8 @@ variable {n : Nat} {cmp : Mono n → Mono n → Ordering}
 /-- Change both the polynomial representation and its residue coefficient carrier. -/
 noncomputable def residueEquiv :
     MvPoly n (Hex.ZMod64 p) cmp ≃+* MvPolynomial (Fin n) (ZMod p) :=
-  (HexMvPolyMathlib.equiv (cmp := cmp)).trans
-    (MvPolynomial.mapEquiv (Fin n) HexModArithMathlib.ZMod64.equiv)
+  (HexMvPolyTheory.equiv (cmp := cmp)).trans
+    (MvPolynomial.mapEquiv (Fin n) HexModArithTheory.ZMod64.equiv)
 
 /-- Mathlib denotation of the kernel's natural-residue encoding. -/
 @[expose] noncomputable def denoteMod (a : PolyList Nat) :
@@ -85,26 +85,26 @@ theorem denoteMod_subMod {a b : PolyList Nat}
 /-- Executable constants map to constants over Mathlib residues. -/
 theorem residueEquiv_C (c : Hex.ZMod64 p) :
     residueEquiv p (cmp := cmp) (Hex.MvPoly.C c) =
-      MvPolynomial.C (HexModArithMathlib.ZMod64.equiv c) := by
-  simp [residueEquiv, HexMvPolyMathlib.equiv_apply]
+      MvPolynomial.C (HexModArithTheory.ZMod64.equiv c) := by
+  simp [residueEquiv, HexMvPolyTheory.equiv_apply]
 
 /-- Residue correspondence preserves each serialized monomial. -/
 @[simp] theorem residueEquiv_monomial (m : Mono n) (c : Hex.ZMod64 p) :
     residueEquiv p (cmp := cmp) (Hex.MvPoly.monomial m c) =
-      MvPolynomial.monomial (HexMvPolyMathlib.monoEquiv m)
-        (HexModArithMathlib.ZMod64.equiv c) := by
-  simp [residueEquiv, HexMvPolyMathlib.equiv_apply]
+      MvPolynomial.monomial (HexMvPolyTheory.monoEquiv m)
+        (HexModArithTheory.ZMod64.equiv c) := by
+  simp [residueEquiv, HexMvPolyTheory.equiv_apply]
 
 /-- Interpret a serialized residue term followed by the remaining support. -/
 theorem denoteMod_cons (e : List Nat) (c : Nat) (a : PolyList Nat) :
     denoteMod p (cmp := cmp) ((e, c) :: a) =
-      MvPolynomial.monomial (HexMvPolyMathlib.monoEquiv (Hex.MvPoly.Kernel.mono n e))
+      MvPolynomial.monomial (HexMvPolyTheory.monoEquiv (Hex.MvPoly.Kernel.mono n e))
         (c : ZMod p) + denoteMod p (cmp := cmp) a := by
   change residueEquiv p (cmp := cmp) (Hex.MvPoly.monomial (Hex.MvPoly.Kernel.mono n e)
     (Hex.ZMod64.ofNat p c) + Hex.MvPoly.Kernel.denoteMod p a) = _
   erw [map_add, residueEquiv_monomial]
-  rw [show HexModArithMathlib.ZMod64.equiv (Hex.ZMod64.ofNat p c) = (c : ZMod p)
-    from HexModArithMathlib.ZMod64.toZMod_natCast c]
+  rw [show HexModArithTheory.ZMod64.equiv (Hex.ZMod64.ofNat p c) = (c : ZMod p)
+    from HexModArithTheory.ZMod64.toZMod_natCast c]
   rfl
 
 /-- Modular scaling denotes multiplication by the natural scalar in `ZMod p`. -/
@@ -115,8 +115,8 @@ theorem denoteMod_smulMod (c : Nat) {a : PolyList Nat}
   have h := congrArg (residueEquiv p (cmp := cmp))
     (Hex.MvPoly.Kernel.denoteMod_smulMod p (cmp := cmp) c ha)
   rw [map_mul, residueEquiv_C] at h
-  have hc : HexModArithMathlib.ZMod64.equiv (Hex.ZMod64.ofNat p c) = (c : ZMod p) :=
-    HexModArithMathlib.ZMod64.toZMod_natCast c
+  have hc : HexModArithTheory.ZMod64.equiv (Hex.ZMod64.ofNat p c) = (c : ZMod p) :=
+    HexModArithTheory.ZMod64.toZMod_natCast c
   rw [hc] at h
   exact h
 
@@ -143,4 +143,4 @@ theorem denoteMod_ofResidues (a : MvPoly n (Hex.ZMod64 p) cmp) :
       residueEquiv p (cmp := cmp) a := by
   exact congrArg (residueEquiv p) (Hex.MvPoly.Kernel.denoteMod_ofResidues p (cmp := cmp) a)
 
-end HexMvPolyMathlib.Kernel
+end HexMvPolyTheory.Kernel
